@@ -1,0 +1,14 @@
+[
+    {
+        "id": "ntb",
+        "name":"Notebooks"
+    },
+    {
+        "id": "tbl",
+        "name":"Tablets"
+    },
+    {
+        "id": "mbl",
+        "name":"Mobile Phones"
+    }
+]

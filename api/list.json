@@ -1,0 +1,11 @@
+[
+ { "id": "Идентификатор", "name": "Product Name", "price": "Price", "rating": "Rating" },
+ [ 1, "iPhone 5", "$400", 3 ],
+ [ 2, "Samsung Galaxy S5", "$300", 3.8 ],
+ [ 3, "Nokia Lumia 1320", "$130", 2.1 ],
+ [ 4, "Asus ZenBook", "$1300", 4.1 ],
+ [ 5, "iPad mini", "$150", 4.4 ],
+ [ 6, "Xiaomi Book", "$800", 5 ],
+ [ 7, "Meizu Pad", "$200", 3.7 ],
+ [ 8, "Microsoft Surface", "$700", 1 ]
+]

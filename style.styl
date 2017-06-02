@@ -1,0 +1,57 @@
+textColor = #9BA9BA
+tableColor = #8b949e
+checkboxColor = #F0F2F6
+headerBackColor = #465567
+headerBoredrColor = #58697E
+
+body
+    font-family sans-serif
+    min-height 100vh
+    background linear-gradient(to left,checkboxColor 0%, #fff 25%, #fff 75%, checkboxColor 100%)
+    font-size 100%
+    color textColor
+.checkbox
+    background-color checkboxColor
+    border-radius 0.1875rem
+    border-color tableColor
+.tableComponent
+    display flex
+    width 80vw
+
+    .tableComponent__checks
+        flex-grow 1
+        ul
+            display flex
+            flex-direction column
+            list-style-type none
+            li
+                flex 1
+    .tableComponent__table
+        flex-grow 3
+        overflow hidden
+        border-radius 0.3125rem
+        border 1px solid headerBackColor
+        table
+            width 101%
+            border-radius 0.3125rem
+            text-align left
+            color tableColor
+            border-collapse collapse
+            th
+                background-color headerBackColor
+                border 1px solid headerBoredrColor
+                color checkboxColor
+                padding 0.625rem
+                font-weight bold
+                cursor pointer
+            tr
+                &:last-child
+                    td
+                        border-bottom none
+            td
+                padding 0.625rem
+                border 1px solid headerBackColor
+                &:first-child
+                    border-left none
+                &:last-child
+                    border-right none

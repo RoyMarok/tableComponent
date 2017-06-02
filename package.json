@@ -1,0 +1,18 @@
+{
+  "name": "Table",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-stylus": "^2.6.0",
+    "gulp-watch": "^4.3.11",
+    "npm-run-all": "^4.0.2",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {
+    "server": "node server",
+    "watch-css": "gulp",
+    "start": "npm-run-all -p watch-css server"
+  }
+}

@@ -1,0 +1,61 @@
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to left, #f0f2f6 0%, #fff 25%, #fff 75%, #f0f2f6 100%);
+  font-size: 100%;
+  color: #9ba9ba;
+}
+.checkbox {
+  background-color: #f0f2f6;
+  border-radius: 0.1875rem;
+  border-color: #8b949e;
+}
+.tableComponent {
+  display: flex;
+  width: 80vw;
+}
+.tableComponent .tableComponent__checks {
+  flex-grow: 1;
+}
+.tableComponent .tableComponent__checks ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+.tableComponent .tableComponent__checks ul li {
+  flex: 1;
+}
+.tableComponent .tableComponent__table {
+  flex-grow: 3;
+  overflow: hidden;
+  border-radius: 0.3125rem;
+  border: 1px solid #465567;
+}
+.tableComponent .tableComponent__table table {
+  width: 101%;
+  border-radius: 0.3125rem;
+  text-align: left;
+  color: #8b949e;
+  border-collapse: collapse;
+}
+.tableComponent .tableComponent__table table th {
+  background-color: #465567;
+  border: 1px solid #58697e;
+  color: #f0f2f6;
+  padding: 0.625rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tableComponent .tableComponent__table table tr:last-child td {
+  border-bottom: none;
+}
+.tableComponent .tableComponent__table table td {
+  padding: 0.625rem;
+  border: 1px solid #465567;
+}
+.tableComponent .tableComponent__table table td:first-child {
+  border-left: none;
+}
+.tableComponent .tableComponent__table table td:last-child {
+  border-right: none;
+}
