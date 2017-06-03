@@ -6,24 +6,98 @@ body {
   color: #9ba9ba;
 }
 .checkbox {
-  background-color: #f0f2f6;
   border-radius: 0.1875rem;
-  border-color: #8b949e;
+  border-color: #d0d1d2;
+}
+.checkbox {
+  position: relative;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.overTrop {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d0d1d2;
+  overflow: hidden;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 3px -24px;
+  background-attachment: scroll;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 0.1875rem;
+  background-color: transparent;
+  background-color: #f0f2f6;
+  transition: all 0.1s;
+  overflow: visible;
+}
+.overTrop:before {
+  position: absolute;
+  content: '';
+  display: block;
+  margin-top: -3px;
+  margin-left: 7px;
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+  box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+  transition: all 0.3s;
+  color: #f0f2f6;
+  opacity: 0;
+  margin-top: 2px;
+  margin-left: 2px;
+  width: 15px;
+  height: 15px;
+  background-image: url("/image/check.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.overTrop.checked,
+input:checked+.overTrop {
+  border: 1px solid #319adc;
+  background-color: #319adc;
+}
+.overTrop.checked:before,
+input:checked+.overTrop:before {
+  color: #319adc;
+  opacity: 1;
+  animation: zoom_in 1s ease-in-out forwards;
+}
+input.masked[type="checkbox"] {
+  position: relative;
+  margin-top: 7px;
+  z-index: 200;
+  margin: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  cursor: pointer;
+  opacity: 0;
+  top: 0.5rem;
+}
+.checkbox+label {
+  margin-left: 10px;
 }
 .tableComponent {
   display: flex;
   width: 80vw;
+  margin: auto;
 }
 .tableComponent .tableComponent__checks {
   flex-grow: 1;
 }
 .tableComponent .tableComponent__checks ul {
-  display: flex;
-  flex-direction: column;
   list-style-type: none;
 }
 .tableComponent .tableComponent__checks ul li {
-  flex: 1;
+  display: block;
+}
+.tableComponent .tableComponent__checks ul li:not(:last-child) {
+  margin-bottom: 0.625rem;
 }
 .tableComponent .tableComponent__table {
   flex-grow: 3;
@@ -38,13 +112,65 @@ body {
   color: #8b949e;
   border-collapse: collapse;
 }
+.tableComponent .tableComponent__table table th[data-key="price"],
+.tableComponent .tableComponent__table table th[data-key="rating"],
+.tableComponent .tableComponent__table table th[data-key="id"],
+.tableComponent .tableComponent__table table td[data-key="price"],
+.tableComponent .tableComponent__table table td[data-key="rating"],
+.tableComponent .tableComponent__table table td[data-key="id"] {
+  text-align: center;
+}
 .tableComponent .tableComponent__table table th {
   background-color: #465567;
   border: 1px solid #58697e;
   color: #f0f2f6;
   padding: 0.625rem;
   font-weight: bold;
+  position: relative;
+  transition: all 0.3s;
+}
+.tableComponent .tableComponent__table table th:after,
+.tableComponent .tableComponent__table table th:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background: url("/image/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 0.625rem;
+  right: 1rem;
+  opacity: 0.2;
+  transform: rotate(180deg);
+  transition: all 0.3s;
+}
+.tableComponent .tableComponent__table table th:first-child {
+  width: 2rem;
+  font-size: 0;
+}
+.tableComponent .tableComponent__table table th:first-child:after {
+  display: none;
+}
+.tableComponent .tableComponent__table table th:first-child:before {
+  background: url("/image/checkbox-marked-outline.svg") no-repeat;
+  transform: rotate(0deg);
+  background-size: cover;
+  left: 1.13rem;
+}
+.tableComponent .tableComponent__table table th:not(:first-child) {
   cursor: pointer;
+}
+.tableComponent .tableComponent__table table th:not(:first-child):before {
+  transform: rotate(0deg);
+}
+.tableComponent .tableComponent__table table th:not(:first-child).sort_asc:after {
+  opacity: 1;
+  transition: all 0.3s;
+}
+.tableComponent .tableComponent__table table th:not(:first-child).sort_desc:before {
+  opacity: 1;
+  transition: all 0.3s;
 }
 .tableComponent .tableComponent__table table tr:last-child td {
   border-bottom: none;
@@ -53,9 +179,165 @@ body {
   padding: 0.625rem;
   border: 1px solid #465567;
 }
+.tableComponent .tableComponent__table table td .checkbox+label {
+  display: none;
+  margin: 0;
+}
 .tableComponent .tableComponent__table table td:first-child {
   border-left: none;
 }
 .tableComponent .tableComponent__table table td:last-child {
   border-right: none;
+}
+.tableComponent .tableComponent__table table td .stars {
+  width: 5.4rem;
+  height: 1rem;
+  position: relative;
+  margin: auto;
+}
+.tableComponent .tableComponent__table table td .stars:after {
+  content: '';
+  width: 5.55rem;
+  height: 1.1rem;
+  left: -0.1rem;
+  position: absolute;
+  background: url("/image/5stars.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@-moz-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-moz-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoom_in {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

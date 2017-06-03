@@ -1,8 +1,10 @@
 textColor = #9BA9BA
 tableColor = #8b949e
 checkboxColor = #F0F2F6
+checkboxBorderColor = #d0d1d2
 headerBackColor = #465567
 headerBoredrColor = #58697E
+blueColor = #319ADC
 
 body
     font-family sans-serif
@@ -10,22 +12,119 @@ body
     background linear-gradient(to left,checkboxColor 0%, #fff 25%, #fff 75%, checkboxColor 100%)
     font-size 100%
     color textColor
+
 .checkbox
-    background-color checkboxColor
+    // background-color checkboxColor
     border-radius 0.1875rem
-    border-color tableColor
+    border-color checkboxBorderColor
+@keyframes zoom_in
+    0%
+        transform: scale(0)
+    25%
+        transform: scale(1.2)
+    50%
+        transform: scale(1)
+    75%
+        transform: scale(1.05)
+    100%
+        transform: scale(1)
+@keyframes zoom_in
+    0%
+        transform: scale(0)
+    25%
+        transform: scale(1.2)
+    50%
+        transform: scale(1)
+    75%
+        transform: scale(1.05)
+    100%
+        transform: scale(1)
+.checkbox
+    position: relative
+    width: 1.4rem
+    height: 1.4rem
+    display: inline-block
+    vertical-align: middle
+
+.overTrop
+    width: 20px
+    height: 20px
+    border: 1px solid checkboxBorderColor
+    overflow: hidden
+    background-image: none
+    background-repeat: no-repeat
+    background-position: 3px -24px
+    background-attachment: scroll
+    position: absolute
+    left: 0
+    top: 0
+    z-index: 1
+    cursor: pointer
+    border-radius: 0.1875rem
+    background-color: transparent
+    background-color checkboxColor
+    transition: all .1s
+    overflow: visible
+
+.overTrop:before
+    position: absolute
+    content: ''
+    display: block
+    margin-top: -3px
+    margin-left: 7px
+    width: 0
+    height: 0
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset
+    transition: all .3s
+    color: checkboxColor
+    opacity: 0
+    margin-top: 2px
+    margin-left: 2px
+    width: 15px
+    height: 15px
+    background-image: url('/image/check.svg')
+    background-size: 100%
+    background-repeat: no-repeat
+
+.overTrop.checked,
+input:checked+.overTrop
+    border: 1px solid  blueColor
+    background-color blueColor
+
+.overTrop.checked:before,
+input:checked+.overTrop:before
+    color blueColor
+    opacity: 1
+    animation: zoom_in 1s ease-in-out forwards
+
+input.masked[type="checkbox"]
+    position: relative
+    margin-top: 7px
+    z-index: 200
+    margin: 0
+    width: 1.4rem
+    height: 1.4rem
+    cursor: pointer
+    opacity: 0
+    top: .5rem;
+
+.checkbox
+    &+label
+        margin-left: 10px
+
 .tableComponent
     display flex
     width 80vw
-
+    margin auto
     .tableComponent__checks
         flex-grow 1
         ul
-            display flex
-            flex-direction column
             list-style-type none
             li
-                flex 1
+                display block
+                &:not(:last-child)
+                    margin-bottom .625rem
     .tableComponent__table
         flex-grow 3
         overflow hidden
@@ -37,13 +136,61 @@ body
             text-align left
             color tableColor
             border-collapse collapse
+            th[data-key="price"]
+            th[data-key="rating"]
+            th[data-key="id"]
+            td[data-key="price"]
+            td[data-key="rating"]
+            td[data-key="id"]
+                text-align center
+
             th
                 background-color headerBackColor
                 border 1px solid headerBoredrColor
                 color checkboxColor
                 padding 0.625rem
                 font-weight bold
-                cursor pointer
+                position relative
+                transition all .3s
+                &:after
+                &:before
+                    content ''
+                    display block
+                    position absolute
+                    width 1rem
+                    height 1rem
+                    background url('/image/arrow.svg')
+                    background-repeat no-repeat
+                    background-size contain
+                    top .625rem
+                    right 1rem
+                    opacity .2
+                    transform rotate(180deg)
+                    transition all .3s
+                &:first-child
+                    width 2rem
+                    font-size 0
+
+                    &:after
+                        display none
+                    &:before
+                        background url('/image/checkbox-marked-outline.svg') no-repeat
+                        transform rotate(0deg)
+                        background-size cover
+                        left 1.13rem
+                &:not(:first-child)
+                    cursor pointer
+
+                    &:before
+                        transform rotate(0deg)
+                    &.sort_asc
+                        &:after
+                            opacity 1
+                            transition all .3s
+                    &.sort_desc
+                        &:before
+                            opacity 1
+                            transition all .3s
             tr
                 &:last-child
                     td
@@ -51,7 +198,26 @@ body
             td
                 padding 0.625rem
                 border 1px solid headerBackColor
+                .checkbox+label
+                    display none
+                    margin 0
                 &:first-child
                     border-left none
                 &:last-child
                     border-right none
+
+
+                .stars
+                    width 5.4rem
+                    height 1rem
+                    position relative
+                    margin auto
+                    &:after
+                        content ''
+                        width 5.55rem
+                        height 1.1rem
+                        left -.1rem
+                        position absolute
+                        background url('/image/5stars.svg')
+                        background-repeat no-repeat
+                        background-size contain
