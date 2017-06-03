@@ -123,6 +123,8 @@ input.masked[type="checkbox"] {
 .tableComponent .tableComponent__table table th {
   background-color: #465567;
   border: 1px solid #58697e;
+  border-top: none;
+  border-bottom: none;
   color: #f0f2f6;
   padding: 0.625rem;
   font-weight: bold;
@@ -145,9 +147,13 @@ input.masked[type="checkbox"] {
   transform: rotate(180deg);
   transition: all 0.3s;
 }
+.tableComponent .tableComponent__table table th:last-child {
+  border-right: none;
+}
 .tableComponent .tableComponent__table table th:first-child {
   width: 2rem;
   font-size: 0;
+  border-left: none;
 }
 .tableComponent .tableComponent__table table th:first-child:after {
   display: none;
@@ -178,6 +184,7 @@ input.masked[type="checkbox"] {
 .tableComponent .tableComponent__table table td {
   padding: 0.625rem;
   border: 1px solid #465567;
+  background-color: #fff;
 }
 .tableComponent .tableComponent__table table td .checkbox+label {
   display: none;
@@ -190,7 +197,7 @@ input.masked[type="checkbox"] {
   border-right: none;
 }
 .tableComponent .tableComponent__table table td .stars {
-  width: 5.4rem;
+  width: 5.38rem;
   height: 1rem;
   position: relative;
   margin: auto;

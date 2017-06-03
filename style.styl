@@ -147,6 +147,8 @@ input.masked[type="checkbox"]
             th
                 background-color headerBackColor
                 border 1px solid headerBoredrColor
+                border-top none
+                border-bottom none
                 color checkboxColor
                 padding 0.625rem
                 font-weight bold
@@ -167,10 +169,12 @@ input.masked[type="checkbox"]
                     opacity .2
                     transform rotate(180deg)
                     transition all .3s
+                &:last-child
+                    border-right none
                 &:first-child
                     width 2rem
                     font-size 0
-
+                    border-left none
                     &:after
                         display none
                     &:before
@@ -198,6 +202,7 @@ input.masked[type="checkbox"]
             td
                 padding 0.625rem
                 border 1px solid headerBackColor
+                background-color white
                 .checkbox+label
                     display none
                     margin 0
@@ -208,7 +213,7 @@ input.masked[type="checkbox"]
 
 
                 .stars
-                    width 5.4rem
+                    width 5.38rem
                     height 1rem
                     position relative
                     margin auto
